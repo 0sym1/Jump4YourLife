@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnController : MonoBehaviour
 {
     public static SpawnController Instance;
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject grounds;
     private ObjectPool objectPool;
     private float point;

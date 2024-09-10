@@ -14,13 +14,11 @@ public class GroundController : MonoBehaviour
     private float boundWall;
     private float boundScreen;
     [SerializeField] private float speed;
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject lineScore;
     [SerializeField] private Ground ground;
 
     void Awake()
     {
-        player = GameObject.FindWithTag("Player");
         //set sprite
         spriteRenderer = GetComponent<SpriteRenderer>();
         sprite1 = ground.GetSprite1();
@@ -61,9 +59,12 @@ public class GroundController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.tag == "Player"){
             isCollide = true;
-            player.transform.parent = transform;
+            PlayerController.Instance.transform.parent = transform;
             //day mat dat len
-            GameManager.Instance.PushGrounds();
+            StartCoroutine(GameManager.Instance.PushGrounds());
+            //push wall up
+            //WallController.Instance.PushWall();
+            StartCoroutine(GameManager.Instance.PushWall());
         }
     }
 
@@ -76,13 +77,13 @@ public class GroundController : MonoBehaviour
         isCollide = false;
         collider2d.isTrigger = false;
         spriteRenderer.sprite = sprite1;
+        lineScore.SetActive(true);
     }
     public void UpdateSprite(){
         if(isCollide){
             if(spriteRenderer.sprite == sprite1) spriteRenderer.sprite = sprite2;
             else{
-                Debug.Log(player);
-                player.transform.SetParent(null);
+                PlayerController.Instance.transform.SetParent(null);
                 gameObject.SetActive(false);
                 Reset();
                 SpawnController.Instance.RecyclingObject();

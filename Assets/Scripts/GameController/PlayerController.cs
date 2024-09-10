@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     // Start is called before the first frame update
     private bool isJump;
     private Rigidbody2D rg;
     private Animator animator;
+    private float boundScreen;
     [SerializeField] private float speed;
     
-    void Start()
+    void Awake()
     {
+        Instance = this;
+        boundScreen = -5.5f;
         isJump = false;
         rg = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -22,8 +26,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && !isJump){
             Jump();
         }
-    }
 
+        CheckOutScreen();
+    }
+    public void setIsJump(bool isJump){
+        this.isJump = isJump;
+    }
     public void Jump(){
         isJump = true;
         transform.parent = null;
@@ -33,11 +41,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Ground"){
-            isJump = false;
-            //cho player làm con của đất
-            // transform.parent = other.transform;
             //update điểm
-            updateScore();
+            GameManager.Instance.UpdateScore();
         }
         setAnimation();
     }
@@ -50,12 +55,8 @@ public class PlayerController : MonoBehaviour
     public void setAnimation(){
         animator.SetBool("isJump", isJump);
     }
-    public void updateScore(){
-        int addScore = GameManager.Instance.getAddScore();
-        int score = GameManager.Instance.getScore();
-        GameManager.Instance.setScore(score + addScore);
-        GameManager.Instance.setScoreTxt();
-
-        GameManager.Instance.setAddScore(0);
+    // sau update obsever
+    public void CheckOutScreen(){
+        if(transform.position.y <= boundScreen) GameManager.Instance.GameOver();
     }
 }
