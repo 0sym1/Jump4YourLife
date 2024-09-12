@@ -12,51 +12,70 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private float boundScreen;
     [SerializeField] private float speed;
-    
+
+    private bool isDead;
+
     void Awake()
     {
         Instance = this;
         boundScreen = -5.5f;
         isJump = false;
+        isDead = false;
         rg = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    void Update(){
-        if(Input.GetMouseButtonDown(0) && !isJump){
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && !isJump)
+        {
             Jump();
         }
-
-        CheckOutScreen();
+        if(!isDead){
+            CheckOutScreen();
+        }
     }
-    public void setIsJump(bool isJump){
+    public void setIsJump(bool isJump)
+    {
         this.isJump = isJump;
     }
-    public void Jump(){
+    public void Jump()
+    {
         isJump = true;
         transform.parent = null;
         rg.velocity = Vector3.up * speed;
         setAnimation();
     }
 
-    public void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Ground"){
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
             //update điểm
             GameManager.Instance.UpdateScore();
+            isJump = false;
         }
         setAnimation();
     }
 
-    public void OnCollisionExit2D(Collision2D other){
-        if(other.gameObject.tag == "Ground"){
+    public void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
             isJump = true;
         }
     }
-    public void setAnimation(){
+    public void setAnimation()
+    {
         animator.SetBool("isJump", isJump);
     }
     // sau update obsever
-    public void CheckOutScreen(){
-        if(transform.position.y <= boundScreen) GameManager.Instance.GameOver();
+    public void CheckOutScreen()
+    {
+        if (transform.position.y <= boundScreen)
+        {
+            Messenger.Broadcast(EventKey.GAME_OVER);
+            isDead = true;
+        }
     }
 }

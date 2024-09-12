@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject grounds;
     [SerializeField] private GameObject walls;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject PerfecrImg;
 
     private int highScore;
     private int score;
@@ -18,8 +21,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedUp;
     [SerializeField] private TextMeshProUGUI scoreTxt;
     void Awake(){
-        Instance = this;
+        if(Instance == null){
+            Instance = this;
+        }
         score = 0;
+
+    }
+
+    void OnEnable(){
+        Messenger.AddListener(EventKey.GAME_OVER, GameOver);
+        Messenger.AddListener(EventKey.PERFECT, PerfectNoti);
+        
+    }
+
+    void OnDisable() {
+        Messenger.RemoveListener(EventKey.GAME_OVER, GameOver);
+        Messenger.RemoveListener(EventKey.PERFECT, PerfectNoti);
+    }
+    void Start(){
+        gameOverPanel.SetActive(false);
+        PerfecrImg.SetActive(false);
     }
 
     public int getScore(){ return score;}
@@ -57,19 +78,28 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+    public void PerfectNoti(){
+        PerfecrImg.SetActive(true);
+        StartCoroutine(Delay());
+        
+    }
     public void GameOver(){
         Time.timeScale = 0;
         // hien len bang thong bao
         gameOverPanel.SetActive(true);
     }
     public void ReplayGame(){
-        Time.timeScale = 1;
-        gameOverPanel.SetActive(false);
-        Debug.Log(Time.timeScale);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("GameScene");
     }
+
     public void BackHome(){
-        Time.timeScale = 1; 
+        Time.timeScale = 1f; 
         SceneManager.LoadScene("HomeScene");
+    }
+
+    public IEnumerator Delay(){
+        yield return new WaitForSeconds(2f);
+        PerfecrImg.SetActive(false);
     }
 }
