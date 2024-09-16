@@ -21,8 +21,8 @@ public class LineGroundController : MonoBehaviour
     }
 
     public void AddScore(){
-        int addScore = GameManager.Instance.getAddScore() + 1;
-        GameManager.Instance.setAddScore(addScore);
+        int addScore = GameManager.Instance.AddScore + 1;
+        GameManager.Instance.AddScore = addScore;
     }
     public void CheckPerfect(){
         if(Math.Abs(PlayerController.Instance.transform.position.x - boxCollider2D.transform.position.x) <= 0.5f){

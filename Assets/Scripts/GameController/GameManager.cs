@@ -14,10 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject walls;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject PerfecrImg;
+    
+    public int AddScore { get; set; }
 
     private int highScore;
     private int score;
-    private int addScore;
     [SerializeField] private float speedUp;
     [SerializeField] private TextMeshProUGUI scoreTxt;
     void Awake(){
@@ -43,24 +44,21 @@ public class GameManager : MonoBehaviour
         PerfecrImg.SetActive(false);
     }
 
-    public int getScore(){ return score;}
-    public int getAddScore(){ return addScore;}
-    public void setAddScore(int addScore){
-        this.addScore = addScore;
-    }
+    public int GetScore(){ return score;}
+ 
     public void UpdateScore(){
-        score += addScore;
+        score += AddScore;
         scoreTxt.text = score.ToString();
         highScore = Math.Max(highScore, score);
 
-        addScore = 0;
+        AddScore = 0;
     }
     public void setScoreTxt(){
         scoreTxt.text = score.ToString(); 
     }
 
     public IEnumerator PushGrounds(){
-        int step = addScore;
+        int step = AddScore;
         Vector3 positionTarget = new Vector3(grounds.transform.position.x, grounds.transform.position.y + 3.5f*step, 0);
         while(grounds.transform.position != positionTarget){
             grounds.transform.position = Vector3.MoveTowards(grounds.transform.position, positionTarget, speedUp * Time.deltaTime);
@@ -71,7 +69,7 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator PushWall(){
-        int step = addScore;
+        int step = AddScore;
         Vector3 positionTarget = new Vector3(walls.transform.position.x, walls.transform.position.y + 3.5f*step, 0);
         while(walls.transform.position != positionTarget){
             walls.transform.position = Vector3.MoveTowards(walls.transform.position, positionTarget, speedUp * Time.deltaTime);

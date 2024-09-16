@@ -30,7 +30,7 @@ public class WallController : MonoBehaviour
         wall.transform.position = new Vector3(wall.transform.position.x, walls[i].transform.position.y - highOfWall, 0);
     }
     public void PushWall(){
-        int step = GameManager.Instance.getAddScore();
+        int step = GameManager.Instance.AddScore;
         foreach(GameObject wall in walls){
             wall.transform.position = new Vector3(wall.transform.position.x, wall.transform.position.y + 3.5f*step, 0);
         }
