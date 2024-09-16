@@ -10,7 +10,7 @@ public class LineGroundController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
     public void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.CompareTag("Player")){
             //check perfect
             CheckPerfect();
             //add score
