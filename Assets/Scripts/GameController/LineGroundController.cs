@@ -6,7 +6,7 @@ using UnityEngine;
 public class LineGroundController : MonoBehaviour
 {
     private BoxCollider2D boxCollider2D;
-    void Awake(){
+    private void Awake(){
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
     public void OnTriggerEnter2D(Collider2D other){

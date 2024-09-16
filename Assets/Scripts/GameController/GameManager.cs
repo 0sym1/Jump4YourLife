@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private int score;
     [SerializeField] private float speedUp;
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    void Awake(){
+    private void Awake(){
         if(Instance == null){
             Instance = this;
         }
@@ -29,17 +29,17 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void OnEnable(){
+    private void OnEnable(){
         Messenger.AddListener(EventKey.GAME_OVER, GameOver);
         Messenger.AddListener(EventKey.PERFECT, PerfectNoti);
         
     }
 
-    void OnDisable() {
+    private void OnDisable() {
         Messenger.RemoveListener(EventKey.GAME_OVER, GameOver);
         Messenger.RemoveListener(EventKey.PERFECT, PerfectNoti);
     }
-    void Start(){
+    private void Start(){
         gameOverPanel.SetActive(false);
         PerfecrImg.SetActive(false);
     }
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         // dat lai isJump cho player co the nhay tiep
-        PlayerController.Instance.setIsJump(false);
+        PlayerController.Instance.SetIsJump(false);
     }
 
     public IEnumerator PushWall(){

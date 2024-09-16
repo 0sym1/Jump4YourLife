@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
         boundScreen = -5.5f;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isJump)
         {
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             CheckOutScreen();
         }
     }
-    public void setIsJump(bool isJump)
+    public void SetIsJump(bool isJump)
     {
         this.isJump = isJump;
     }
@@ -44,28 +44,28 @@ public class PlayerController : MonoBehaviour
         isJump = true;
         transform.parent = null;
         rg.velocity = Vector3.up * speed;
-        setAnimation();
+        SetAnimation();
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             //update điểm
             GameManager.Instance.UpdateScore();
             isJump = false;
         }
-        setAnimation();
+        SetAnimation();
     }
 
     public void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             isJump = true;
         }
     }
-    public void setAnimation()
+    public void SetAnimation()
     {
         animator.SetBool("isJump", isJump);
     }

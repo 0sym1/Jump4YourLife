@@ -10,7 +10,7 @@ public class SpawnController : MonoBehaviour
     private float point;
     private float distance;
     private GameObject lastGround;
-    void Awake(){
+    private void Awake(){
         Instance = this;
         objectPool = GetComponent<ObjectPool>();
         point = 0;
@@ -18,7 +18,7 @@ public class SpawnController : MonoBehaviour
 
     }
 
-    void Start(){
+    private void Start(){
         for(int i=1 ; i<=10 ; i++){
             GameObject tmp = objectPool.GetFromPool();
             tmp.transform.position = new Vector3(Random.Range(-1.2f, 1.2f), point, 0);

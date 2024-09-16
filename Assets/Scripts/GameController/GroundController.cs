@@ -17,7 +17,7 @@ public class GroundController : MonoBehaviour
     [SerializeField] private GameObject lineScore;
     [SerializeField] private Ground ground;
 
-    void Awake()
+    private void Awake()
     {
         //set sprite
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,7 +34,7 @@ public class GroundController : MonoBehaviour
         boundScreen = 5;
     }
 
-    void Update()
+    private void Update()
     {
         if(isRight) transform.position += Vector3.right * speed * Time.deltaTime;
         else transform.position += Vector3.left * speed * Time.deltaTime;

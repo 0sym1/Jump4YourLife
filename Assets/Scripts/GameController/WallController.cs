@@ -10,12 +10,12 @@ public class WallController : MonoBehaviour
     private float highOfWall;
     [SerializeField] private List<GameObject> walls = new List<GameObject>();
     // Update is called once per frame
-    void Awake(){
+    private void Awake(){
         Instance = this;
         boundScreen = 6f;
         highOfWall = 10;
     }
-    void Update()
+    private void Update()
     {
         for(int i=0 ; i<3 ; i++){
             if(walls[i].transform.position.y > boundScreen){
