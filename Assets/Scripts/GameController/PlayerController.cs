@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isJump)
         {
+            //tat instruct
+            GameManager.Instance.setFalseInstructNoti();
             Jump();
         }
         if(!isDead){
