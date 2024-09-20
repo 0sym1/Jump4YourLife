@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingManager : PanelManager
+public class SettingController : Panel
 {
     private string link = "https://www.facebook.com/profile.php?id=100007136566181";
     [SerializeField] private Image soundBackgroundImg;
@@ -13,6 +13,7 @@ public class SettingManager : PanelManager
     [SerializeField] private Sprite offSoundSprite;
 
     private void Start(){
+        panelName = "SettingPanel";
         soundBackgroundImg.sprite = onSoundSprite;
         soundEffectImg.sprite = onSoundSprite;
     }
