@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Panel : Singleton<Panel>
 {
-    [SerializeField] protected GameObject panelPrefab;
+    protected GameObject panelPrefab;
     protected string panelName;
-    public void ClosePanel(){panelPrefab.SetActive(false);}
+
+    private void Awake(){
+        panelPrefab = gameObject;
+    }
+    public void ClosePanel(){gameObject.SetActive(false);}
+    public void OpenPanel(){gameObject.SetActive(true);}
+    public void RemovePanel(){Destroy(gameObject);}
 }

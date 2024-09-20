@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HomeController : Panel
 {
-    [SerializeField] private GameObject settingPanel;
-    [SerializeField] private GameObject skinShopPanel;
-    [SerializeField] private GameObject blockAdsPanel;
     private void Start()
     {
         panelName = "HomePanel"; 
     }
+    public void PlayGame(){SceneManager.LoadScene("GameScene");}
 }
