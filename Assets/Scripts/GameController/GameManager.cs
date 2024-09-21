@@ -13,15 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject grounds;
     [SerializeField] private GameObject walls;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject PerfecrImg;
-    
-    public int AddScore { get; set; }
-
+    [SerializeField] private GameObject perfecrImg;
+    [SerializeField] private GameObject instructNoti;
+    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private float speedUp;
     private int highScore;
     private int score;
-    [SerializeField] private float speedUp;
-    [SerializeField] private TextMeshProUGUI scoreTxt;
-    private void Awake(){
+    public int AddScore { get; set; }
+    void Awake(){
         if(Instance == null){
             Instance = this;
         }
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start(){
         gameOverPanel.SetActive(false);
-        PerfecrImg.SetActive(false);
+        perfecrImg.SetActive(false);
     }
 
     public int GetScore(){ return score;}
@@ -76,8 +75,11 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+    public void setFalseInstructNoti(){
+        instructNoti.SetActive(false);
+    }
     public void PerfectNoti(){
-        PerfecrImg.SetActive(true);
+        perfecrImg.SetActive(true);
         StartCoroutine(Delay());
         
     }
@@ -98,6 +100,6 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Delay(){
         yield return new WaitForSeconds(2f);
-        PerfecrImg.SetActive(false);
+        perfecrImg.SetActive(false);
     }
 }
