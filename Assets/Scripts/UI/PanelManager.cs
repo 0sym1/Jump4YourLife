@@ -21,7 +21,8 @@ public class PanelManager : Singleton<PanelManager>
 
     public Panel GetPanel(string name){
         Panel panel = _panels[name];
-        return panel;
+        var panelClone = Instantiate(panel, transform).GetComponent<Panel>();
+        return panelClone;
     }
     public void OpenPanel(string name)
     {

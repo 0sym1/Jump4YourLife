@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 290407302}
   - component: {fileID: 290407301}
   - component: {fileID: 290407300}
+  - component: {fileID: 290407304}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -552,6 +553,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &290407304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290407299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1c4889807c8a64e9d4b1ef7422abf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
 --- !u!224 &466637089 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 147752549099934211, guid: 07b442c08c0d63f4dae77059cc89c099, type: 3}
@@ -1050,7 +1064,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1342622685}
   - component: {fileID: 1342622684}
-  - component: {fileID: 1342622686}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1091,19 +1104,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1342622686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342622683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1c4889807c8a64e9d4b1ef7422abf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
 --- !u!1 &1364745153
 GameObject:
   m_ObjectHideFlags: 0

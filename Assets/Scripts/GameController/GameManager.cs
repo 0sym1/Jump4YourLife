@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver(){
         // hien len bang thong bao
-        PanelManager.Instance.OpenPanel("GameOverPanel");
+        PanelManager.Instance.OpenPanel(GameConfig.GameOverPanel);
         Time.timeScale = 0;
     }
     public IEnumerator Delay(){
