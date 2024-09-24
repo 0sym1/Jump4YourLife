@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private GameObject grounds;
     [SerializeField] private GameObject walls;
-    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject perfecrImg;
     [SerializeField] private GameObject instructNoti;
     [SerializeField] private TextMeshProUGUI scoreTxt;
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour
         Messenger.RemoveListener(EventKey.PERFECT, PerfectNoti);
     }
     void Start(){
-        gameOverPanel.SetActive(false);
         perfecrImg.SetActive(false);
     }
 
@@ -84,23 +82,12 @@ public class GameManager : MonoBehaviour
     public void PerfectNoti(){
         perfecrImg.SetActive(true);
         StartCoroutine(Delay());
-        
     }
     public void GameOver(){
-        Time.timeScale = 0;
         // hien len bang thong bao
-        gameOverPanel.SetActive(true);
+        PanelManager.Instance.OpenPanel("GameOverPanel");
+        Time.timeScale = 0;
     }
-    public void ReplayGame(){
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void BackHome(){
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene("HomeScene");
-    }
-
     public IEnumerator Delay(){
         yield return new WaitForSeconds(2f);
         perfecrImg.SetActive(false);

@@ -23,7 +23,6 @@ public class PanelManager : Singleton<PanelManager>
         Panel panel = _panels[name];
         return panel;
     }
-
     public void OpenPanel(string name)
     {
         Panel panel = GetPanel(name);

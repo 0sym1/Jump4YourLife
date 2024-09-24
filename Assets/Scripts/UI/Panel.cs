@@ -11,6 +11,13 @@ public class Panel : Singleton<Panel>
         panelPrefab = gameObject;
     }
     public void ClosePanel(){gameObject.SetActive(false);}
-    public void OpenPanel(){gameObject.SetActive(true);}
+    public void OpenPanel(){
+        Debug.Log(gameObject.name);
+        Debug.Log(gameObject.activeInHierarchy);
+        Debug.Log(gameObject.activeSelf);
+        gameObject.SetActive(true);
+        Debug.Log(gameObject.activeInHierarchy);
+        Debug.Log(gameObject.activeSelf);
+        }
     public void RemovePanel(){Destroy(gameObject);}
 }
