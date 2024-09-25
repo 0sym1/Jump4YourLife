@@ -1,38 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class PanelManager : Singleton<PanelManager>
 {
-    private Dictionary<string, Panel> _panels;
+    private Dictionary<string, Panel> _panelPrefabDict;
+    
     private void Start(){
-        _panels = new Dictionary<string,Panel>();
+        _panelPrefabDict = new Dictionary<string, Panel>();
         LoadPanel();
     }
 
     private void LoadPanel(){
-        Panel []panel = Resources.LoadAll<Panel> ("PanelPrefabs/");
-        foreach (Panel it in panel){
-            _panels.Add(it.name, it);
-            Debug.Log(it.name);
+        Panel[] panel = Resources.LoadAll<Panel>(GameConfig.PanelResourcePath);
+        foreach (Panel p in panel){
+            _panelPrefabDict.Add(p.name, p);
+            Debug.Log(p.name);
         }
     }
+    
+    public Panel CreatePanel(string panelName){
+        Panel panelPrefab = _panelPrefabDict[panelName];
+        var panel = Instantiate(panelPrefab, transform);
+        panel.Init(panelName);
+        return panel;
+    }
 
-    public Panel GetPanel(string name){
-        Panel panel = _panels[name];
-        var panelClone = Instantiate(panel, transform).GetComponent<Panel>();
-        return panelClone;
-    }
-    public void OpenPanel(string name)
-    {
-        Panel panel = GetPanel(name);
+    public Panel OpenPanel(string panelName){
+        Panel panel = CreatePanel(panelName);
         panel.OpenPanel();
-    }
-    public void ClosePanel(string name)
-    {
-        Panel panel = GetPanel(name);
-        panel.ClosePanel();
+        return panel;
     }
     
+    // public void ClosePanel(string panelName)
+    // {
+    //     Panel panel = OpenPanel(panelName);
+    //     panel.ClosePanel();
+    // }
 }

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseController : Panel
+public class PausePanel : Panel
 {
     private void OnEnable(){
         Time.timeScale = 0;
@@ -13,10 +11,10 @@ public class PauseController : Panel
     }
     public void Restart(){
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(GameConfig.GameScene);
     }
     public void BackHome(){
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("HomeScene");
+        SceneManager.LoadScene(GameConfig.HomeScene);
     }
 }

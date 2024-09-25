@@ -1,23 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Panel : Singleton<Panel>
+public class Panel : MonoBehaviour
 {
-    protected GameObject panelPrefab;
     protected string panelName;
 
-    private void Awake(){
-        panelPrefab = gameObject;
+    public void Init(string pName)
+    {
+        panelName = pName;
     }
-    public void ClosePanel(){gameObject.SetActive(false);}
-    public void OpenPanel(){
-        Debug.Log(gameObject.name);
-        Debug.Log(gameObject.activeInHierarchy);
-        Debug.Log(gameObject.activeSelf);
+
+    public void OpenPanel()
+    {
+        // Debug.Log(gameObject.name);
+        // Debug.Log(gameObject.activeInHierarchy);
+        // Debug.Log(gameObject.activeSelf);
+        Debug.Log("Open panel: " + panelName);
         gameObject.SetActive(true);
-        Debug.Log(gameObject.activeInHierarchy);
-        Debug.Log(gameObject.activeSelf);
-        }
-    public void RemovePanel(){Destroy(gameObject);}
+        // Debug.Log(gameObject.activeInHierarchy);
+        // Debug.Log(gameObject.activeSelf);
+    }
+
+    public void ClosePanel()
+    {
+        Destroy(gameObject);
+    }
 }
