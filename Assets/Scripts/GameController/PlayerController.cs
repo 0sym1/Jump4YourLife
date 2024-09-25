@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isJump)
+        if (Input.GetMouseButtonDown(0) && !Utils.IsMouseOverUI() && !isJump) //TODO check co dang click vao UI khong?
         {
             //tat instruct
             GameManager.Instance.setFalseInstructNoti();

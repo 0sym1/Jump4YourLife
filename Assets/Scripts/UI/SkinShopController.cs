@@ -8,7 +8,6 @@ public class SkinShopController : Panel
     [SerializeField] private GameObject skinPlayerPanel;
     [SerializeField] private GameObject skinBackgroundPanel;
     private void Start(){
-        panelName = "SkinShopPanel";
         OpenSkinPlayer();
     }
     public void OpenSkinPlayer(){
@@ -22,7 +21,7 @@ public class SkinShopController : Panel
 
     private void LoadData(){
         //load data skinplayer
-        SkinPlayer[] datas = Resources.LoadAll<SkinPlayer>("SkinPlayerData");
+        SkinPlayer[] datas = Resources.LoadAll<SkinPlayer>(GameConfig.SkinPlayerDataResourcePath);
         foreach(SkinPlayer player in datas){
             skinPlayers.Add(player);
         }

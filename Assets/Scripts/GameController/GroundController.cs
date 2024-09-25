@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
+    [SerializeField] private float speed;
+    [SerializeField] private GameObject lineScore;
+    [SerializeField] private Ground ground;
     private BoxCollider2D collider2d;
     private BoxCollider2D collider2dLine;
     private SpriteRenderer spriteRenderer;
@@ -13,9 +16,6 @@ public class GroundController : MonoBehaviour
     private bool isRight, isCollide;
     private float boundWall;
     private float boundScreen;
-    [SerializeField] private float speed;
-    [SerializeField] private GameObject lineScore;
-    [SerializeField] private Ground ground;
 
     private void Awake()
     {
