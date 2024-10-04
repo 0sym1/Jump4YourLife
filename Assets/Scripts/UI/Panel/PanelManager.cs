@@ -5,33 +5,33 @@ using UnityEngine;
 
 public class PanelManager : Singleton<PanelManager>
 {
-    private Dictionary<string, Panel> _panels;
+    private Dictionary<string, Panel> _panelDictionary;
     private void Start(){
-        _panels = new Dictionary<string,Panel>();
+        _panelDictionary = new Dictionary<string,Panel>();
         LoadPanel();
     }
 
     private void LoadPanel(){
-        Panel []panel = Resources.LoadAll<Panel> ("PanelPrefabs/");
+        Panel []panel = Resources.LoadAll<Panel> (GameConfig.PanelResourcePath);
         foreach (Panel it in panel){
-            _panels.Add(it.name, it);
-            Debug.Log(it.name);
+            _panelDictionary.Add(it.name, it);
         }
     }
 
     public Panel GetPanel(string name){
-        Panel panel = _panels[name];
+        Panel panelPrefab = _panelDictionary[name];
+        var panel = Instantiate(panelPrefab, transform);
         return panel;
     }
     public void OpenPanel(string name)
     {
         Panel panel = GetPanel(name);
-        panel.OpenPanel();
+        panel.Open();
     }
     public void ClosePanel(string name)
     {
         Panel panel = GetPanel(name);
-        panel.ClosePanel();
+        panel.Close();
     }
     
 }
