@@ -113,12 +113,12 @@ TextureImporter:
       name: Background_Large_1_0
       rect:
         serializedVersion: 2
-        x: 901
+        x: 902
         y: 246
-        width: 900
+        width: 899
         height: 1802
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,6 +126,27 @@ TextureImporter:
       bones: []
       spriteID: edca249dce22a0c41839f788e902d18e
       internalID: 2062922969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Large_1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 902
+        height: 1801
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c004872c21ff14ab76c0564f704181
+      internalID: 55280048
       vertices: []
       indices: 
       edges: []
@@ -142,6 +163,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Background_Large_1_0: 2062922969
+      Background_Large_1_1: 55280048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkinShopController : Panel
 {
@@ -14,6 +16,8 @@ public class SkinShopController : Panel
     [SerializeField] private Transform contentTransformBG;
     [SerializeField] private GameObject avtBtnPrefab;
     [SerializeField] private GameObject backgroundBtnPrefab;
+    [SerializeField] private Image skinImg;
+    [SerializeField] private TextMeshProUGUI nameSkinTxt;
 
     private void Awake(){
         Instance = this;
@@ -27,6 +31,7 @@ public class SkinShopController : Panel
     public void OpenSkinPlayer(){
         skinPlayerPanel.SetActive(true);
         skinBackgroundPanel.SetActive(false);
+        LoadCurrentSkin();
     }
     public void OpenSkinBackground(){
         skinPlayerPanel.SetActive(false);
@@ -34,6 +39,9 @@ public class SkinShopController : Panel
     }
 
     private void LoadData(){
+        //Load skin hien tai
+        LoadCurrentSkin();
+
         //load data skinplayer
         SkinPlayer[] datasAvt = Resources.LoadAll<SkinPlayer>("SkinPlayerData");
         foreach(SkinPlayer player in datasAvt){
@@ -45,6 +53,13 @@ public class SkinShopController : Panel
         foreach(SkinBackground skin in datasBG){
             skinBackgrounds.Add(skin);
         }
+    }
+
+    private void LoadCurrentSkin(){
+        string dataNameSkin = PlayerPrefs.GetString(GameConfig.SkinPlayerCurrent);
+        SkinPlayer skinPlayer = Resources.Load<SkinPlayer>(GameConfig.SkinPlayerDataResourcePath + dataNameSkin);
+        skinImg.sprite = skinPlayer.GetSkinImg;
+        nameSkinTxt.text = skinPlayer.GetNameSkin;
     }
 
     private void GenerateButton(){
@@ -61,9 +76,11 @@ public class SkinShopController : Panel
     }
 
     public void ChangeAvatar(SkinPlayer skin){
-
+        skinImg.sprite = skin.GetSkinImg;
+        nameSkinTxt.text = skin.GetNameSkin;
+        PlayerPrefs.SetString(GameConfig.SkinPlayerCurrent, skin.GetNameSkin);
     }
     public void ChangeBackground(SkinBackground skin){
-
+        PlayerPrefs.SetString(GameConfig.SkinBackgroundCurrent, skin.getNameSkin);
     }
 }

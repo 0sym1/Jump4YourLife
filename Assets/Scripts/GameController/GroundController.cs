@@ -7,26 +7,33 @@ public class GroundController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private GameObject lineScore;
-    [SerializeField] private Ground ground;
+    private SkinBackground skinBackground;
     private BoxCollider2D collider2d;
     private BoxCollider2D collider2dLine;
     private SpriteRenderer spriteRenderer;
-    private Sprite sprite1;
-    private Sprite sprite2;
+    private Sprite groundSpriteNormal;
+    private Sprite groundSpriteBroken;
     private bool isRight, isCollide;
     private float boundWall;
     private float boundScreen;
-
+    private int type;
+    private bool isInvisible;
+    private float angle;
     void Awake()
     {
-        //set sprite
         spriteRenderer = GetComponent<SpriteRenderer>();
-        sprite1 = ground.GetSprite1();
-        sprite2 = ground.GetSprite2();
-        spriteRenderer.sprite = sprite1;
-
         collider2d = GetComponent<BoxCollider2D>();
         collider2dLine = lineScore.GetComponent<BoxCollider2D>();
+    }
+
+    void Start(){
+        //Set sprite
+        skinBackground = Resources.Load<SkinBackground>(GameConfig.SkinBackgroundDataResourcePath + PlayerPrefs.GetString(GameConfig.SkinBackgroundCurrent));
+        Debug.Log(skinBackground.getNameSkin);
+        groundSpriteNormal = skinBackground.GetSpriteGroundNormal;
+        groundSpriteBroken = skinBackground.GetSpriteGroundBroken;
+        spriteRenderer.sprite = groundSpriteNormal;
+
         //Random cho chạy về trái or phải
         isRight = Random.value > 0.5f;
         isCollide = false;
@@ -46,7 +53,6 @@ public class GroundController : MonoBehaviour
             //update sprite
             UpdateSprite();
         }
-
         // xoa cac obj bi out ra khoi man hinh va them obj o duoi
         if(transform.position.y > boundScreen){
             gameObject.SetActive(false);
@@ -76,18 +82,25 @@ public class GroundController : MonoBehaviour
     public void Reset(){
         isCollide = false;
         collider2d.isTrigger = false;
-        spriteRenderer.sprite = sprite1;
+        spriteRenderer.sprite = groundSpriteNormal;
         lineScore.SetActive(true);
     }
     public void UpdateSprite(){
         if(isCollide){
-            if(spriteRenderer.sprite == sprite1) spriteRenderer.sprite = sprite2;
+            if(spriteRenderer.sprite == groundSpriteNormal) spriteRenderer.sprite = groundSpriteBroken;
             else{
                 PlayerController.Instance.transform.SetParent(null);
                 gameObject.SetActive(false);
                 Reset();
                 SpawnController.Instance.RecyclingObject();
             }
+        }
+    }
+    
+    public void Classify(){
+        type = Random.Range(0,4);
+        if(GameConfig.TypeGround.normal.Equals(type)){
+
         }
     }
 }

@@ -18,6 +18,7 @@ public class BackgroundButtonController : MonoBehaviour
     }
     public void OnClick()
     {
+        Debug.Log(":hi");
         SkinShopController.Instance.ChangeBackground(backgroundInfors);
     }
 }

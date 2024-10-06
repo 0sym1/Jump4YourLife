@@ -9,4 +9,16 @@ public class SkinPlayer : ScriptableObject
     [SerializeField] private string nameSkin;
     [SerializeField] private Sprite avatar;
     [SerializeField] private GameObject prefab;
+    [SerializeField] private Sprite skinImg;
+
+    public Sprite GetSpriteAvatar
+    {
+        get { return avatar; }
+    }
+    public Sprite GetSkinImg{
+        get { return skinImg; }
+    }
+    public string GetNameSkin{
+        get { return nameSkin; }
+    }
 }

@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject walls;
     [SerializeField] private GameObject perfecrImg;
     [SerializeField] private GameObject instructNoti;
+    [SerializeField] private Image backgroundImg;
     [SerializeField] private TextMeshProUGUI scoreTxt;
     [SerializeField] private float speedUp;
+    private SkinBackground skinBackground;
     private int highScore;
     private int score;
     private int addScore;
@@ -23,8 +26,6 @@ public class GameManager : MonoBehaviour
         if(Instance == null){
             Instance = this;
         }
-        score = 0;
-
     }
 
     void OnEnable(){
@@ -38,7 +39,10 @@ public class GameManager : MonoBehaviour
         Messenger.RemoveListener(EventKey.PERFECT, PerfectNoti);
     }
     void Start(){
+        skinBackground = Resources.Load<SkinBackground>(GameConfig.SkinBackgroundDataResourcePath + PlayerPrefs.GetString(GameConfig.SkinBackgroundCurrent));
+        SetSpriteSkinTheme();
         perfecrImg.SetActive(false);
+        score = 0;
     }
 
     public int getScore(){ return score;}
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
         score += addScore;
         scoreTxt.text = score.ToString();
         highScore = Math.Max(highScore, score);
+        PlayerPrefs.SetInt("HighScore", highScore);
 
         addScore = 0;
     }
@@ -85,8 +90,14 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver(){
         // hien len bang thong bao
-        PanelManager.Instance.OpenPanel("GameOverPanel");
+        PanelManager.Instance.OpenPanel(GameConfig.GameOverPanel_Name);
         Time.timeScale = 0;
+    }
+
+    private void SetSpriteSkinTheme(){
+        if(skinBackground == null) Debug.Log("1");
+        if(backgroundImg == null) Debug.Log("2");
+        backgroundImg.sprite = skinBackground.GetImageBG;
     }
     public IEnumerator Delay(){
         yield return new WaitForSeconds(2f);
