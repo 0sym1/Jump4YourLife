@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ea0b338c35c20d4e80994685bed0987, type: 3}
-  m_Name: SkinPlayer 2
+  m_Name: Cat
   m_EditorClassIdentifier: 
   nameSkin: Cat
   avatar: {fileID: 1779533330, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
   prefab: {fileID: 0}
+  skinImg: {fileID: 1433219126, guid: 75a3eff4221f3bf4fa25908497a00525, type: 3}

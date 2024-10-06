@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ea0b338c35c20d4e80994685bed0987, type: 3}
-  m_Name: SkinPlayer
+  m_Name: Penguin
   m_EditorClassIdentifier: 
-  nameSkin: Tarzan
-  avatar: {fileID: -1189571134, guid: b649567eb5b657d468ab7862a2959037, type: 3}
+  nameSkin: Penguin
+  avatar: {fileID: 1329620399, guid: f8a87b83735dc8d4aaa0c1ef05b9724e, type: 3}
   prefab: {fileID: 0}
+  skinImg: {fileID: 596611704, guid: 75a3eff4221f3bf4fa25908497a00525, type: 3}
