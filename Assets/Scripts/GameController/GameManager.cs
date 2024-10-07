@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         SetSpriteSkinTheme();
         perfecrImg.SetActive(false);
         score = 0;
+        highScore = PlayerPrefs.GetInt("HighScore");
     }
 
     public int getScore(){ return score;}
@@ -95,8 +96,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void SetSpriteSkinTheme(){
-        if(skinBackground == null) Debug.Log("1");
-        if(backgroundImg == null) Debug.Log("2");
         backgroundImg.sprite = skinBackground.GetImageBG;
     }
     public IEnumerator Delay(){

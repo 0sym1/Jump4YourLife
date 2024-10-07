@@ -8,29 +8,36 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     // Start is called before the first frame update
+    [SerializeField] private float speed;
+    private GameObject skinPrefab;
+    private GameObject skinObject;
     private bool isJump;
     private Rigidbody2D rg;
     private Animator animator;
     private float boundScreen;
-    [SerializeField] private float speed;
-
     private bool isDead;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
+        rg = GetComponent<Rigidbody2D>();
+        skinPrefab = Resources.Load<GameObject>(GameConfig.SkinPlayerPrefabs + PlayerPrefs.GetString(GameConfig.SkinPlayerCurrent));
+    }
+
+    private void Start(){
+        skinObject = Instantiate(skinPrefab, transform);
+        animator = skinObject.GetComponent<Animator>();
+
         boundScreen = -5.5f;
         isJump = false;
         isDead = false;
-        rg = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isJump && !Utils.IsMouseOverUI())
         {
-            //tat instruct
+            //turn off instruct
             GameManager.Instance.setFalseInstructNoti();
             Jump();
         }
@@ -47,15 +54,18 @@ public class PlayerController : MonoBehaviour
         isJump = true;
         transform.parent = null;
         rg.velocity = Vector3.up * speed;
+        Debug.Log(isJump + "hi");
         setAnimation();
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
+            Debug.Log(isJump);
             //update điểm
             GameManager.Instance.UpdateScore();
+            // StartCoroutine(DelayJump());
             isJump = false;
         }
         setAnimation();
@@ -63,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             isJump = true;
         }
@@ -72,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("isJump", isJump);
     }
-    // sau update obsever
+    
     public void CheckOutScreen()
     {
         if (transform.position.y <= boundScreen)
@@ -80,5 +90,10 @@ public class PlayerController : MonoBehaviour
             Messenger.Broadcast(EventKey.GAME_OVER);
             isDead = true;
         }
+    }
+
+    // anti spam
+    private IEnumerator DelayJump(){
+        yield return new WaitForSeconds(0.1f);
     }
 }

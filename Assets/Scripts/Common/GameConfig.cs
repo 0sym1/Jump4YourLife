@@ -21,6 +21,7 @@ public static class GameConfig
     public const string PanelResourcePath = "PanelPrefabs/";
     public const string SkinPlayerDataResourcePath = "SkinPlayerData/";
     public const string SkinBackgroundDataResourcePath = "SkinBackgroundData/";
+    public const string SkinPlayerPrefabs = "SkinPrefabs/";
 
     //PlayerPrefs
     public const string SkinPlayerCurrent = "SkinPlayerCurrent";

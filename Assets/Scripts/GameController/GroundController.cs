@@ -29,7 +29,6 @@ public class GroundController : MonoBehaviour
     void Start(){
         //Set sprite
         skinBackground = Resources.Load<SkinBackground>(GameConfig.SkinBackgroundDataResourcePath + PlayerPrefs.GetString(GameConfig.SkinBackgroundCurrent));
-        Debug.Log(skinBackground.getNameSkin);
         groundSpriteNormal = skinBackground.GetSpriteGroundNormal;
         groundSpriteBroken = skinBackground.GetSpriteGroundBroken;
         spriteRenderer.sprite = groundSpriteNormal;
@@ -69,7 +68,6 @@ public class GroundController : MonoBehaviour
             //day mat dat len
             StartCoroutine(GameManager.Instance.PushGrounds());
             //push wall up
-            //WallController.Instance.PushWall();
             StartCoroutine(GameManager.Instance.PushWall());
         }
     }

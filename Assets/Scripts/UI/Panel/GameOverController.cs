@@ -9,7 +9,7 @@ public class GameOverController : Panel
     [SerializeField] private TextMeshProUGUI score;
 
     private void Start(){
-        score.text = "0";
+        score.text = GameManager.Instance.getScore().ToString();
     }    
     public void Restart(){
         Time.timeScale = 1.0f;
