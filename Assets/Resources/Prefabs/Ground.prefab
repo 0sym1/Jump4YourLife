@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   lineScore: {fileID: 8042453375652435864}
-  ground: {fileID: 11400000, guid: 5a56d73bc33e9874285eec2017ab04a1, type: 2}
 --- !u!50 &156564338329209117
 Rigidbody2D:
   serializedVersion: 4

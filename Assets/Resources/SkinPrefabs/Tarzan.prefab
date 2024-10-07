@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042384404471408324}
   - component: {fileID: 4480638808397759876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8078372959328895493}
   - component: {fileID: 1925280981165075046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3393327471268552100}
   - component: {fileID: 190052811881084730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389306682146404972}
   - component: {fileID: 7326590062384176609}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3222003691695734627}
   - component: {fileID: 931395215696048034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,11 +430,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7373255289884459623}
   - component: {fileID: 6278639196539904319}
-  - component: {fileID: 7107797979432940490}
-  - component: {fileID: 5015589589624579773}
-  - component: {fileID: 694160827386580421}
-  m_Layer: 0
-  m_Name: Player
+  m_Layer: 7
+  m_Name: Tarzan
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 2223956293486806657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.411, y: -6.5350885, z: 0}
+  m_LocalPosition: {x: 0.1, y: -0.1, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -484,91 +481,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &7107797979432940490
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223956293486806657}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.24710447, y: -0.3025756}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.79718924, y: 2.2242126}
-  m_EdgeRadius: 0
---- !u!50 &5015589589624579773
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223956293486806657}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &694160827386580421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223956293486806657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c86bf9fb56147d46ab0af2ef11767fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
 --- !u!1 &3363195243028107576
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5605813907936769781}
   - component: {fileID: 3359936787222888649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9134866015086179793}
   - component: {fileID: 75676295055952787}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 602387697224672225}
   - component: {fileID: 6827851675904749920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bagia_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
