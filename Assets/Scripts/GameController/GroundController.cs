@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class GroundController : MonoBehaviour
 {
@@ -9,7 +11,6 @@ public class GroundController : MonoBehaviour
     [SerializeField] private GameObject lineScore;
     private SkinBackground skinBackground;
     private BoxCollider2D collider2d;
-    private BoxCollider2D collider2dLine;
     private SpriteRenderer spriteRenderer;
     private Sprite groundSpriteNormal;
     private Sprite groundSpriteBroken;
@@ -17,16 +18,16 @@ public class GroundController : MonoBehaviour
     private float boundWall;
     private float boundScreen;
     private int type;
-    private bool isInvisible;
-    private float angle;
-    void Awake()
+    [SerializeField] private float angle;
+    [SerializeField] private float speedInvisible;
+    private bool isUp; // dùng cho đi chéo
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider2d = GetComponent<BoxCollider2D>();
-        collider2dLine = lineScore.GetComponent<BoxCollider2D>();
     }
 
-    void Start(){
+    private void Start(){
         //Set sprite
         skinBackground = Resources.Load<SkinBackground>(GameConfig.SkinBackgroundDataResourcePath + PlayerPrefs.GetString(GameConfig.SkinBackgroundCurrent));
         groundSpriteNormal = skinBackground.GetSpriteGroundNormal;
@@ -34,14 +35,21 @@ public class GroundController : MonoBehaviour
         spriteRenderer.sprite = groundSpriteNormal;
 
         //Random cho chạy về trái or phải
-        isRight = Random.value > 0.5f;
+        isRight = UnityEngine.Random.value > 0.5f;
+        isUp = true;
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         isCollide = false;
-        boundWall = 1.3f;
+        boundWall = 1.6f;
         boundScreen = 5;
+
+        Classify();
     }
 
-    void Update()
+    private void Update()
     {
+        if((int)GameConfig.TypeGround.diagonal == type) GoDiagonal();
+        else if((int)GameConfig.TypeGround.invisible == type){Blur();}
+
         if(isRight) transform.position += Vector3.right * speed * Time.deltaTime;
         else transform.position += Vector3.left * speed * Time.deltaTime;
 
@@ -49,6 +57,7 @@ public class GroundController : MonoBehaviour
             if(transform.position.x <= -boundWall) transform.position = new Vector3(-boundWall, transform.position.y, transform.position.z);
             else if(transform.position.x >= -boundWall) transform.position = new Vector3(boundWall, transform.position.y, transform.position.z);
             isRight = !isRight;
+            isUp = !isUp;
             //update sprite
             UpdateSprite();
         }
@@ -59,6 +68,18 @@ public class GroundController : MonoBehaviour
             // them obj
             SpawnController.Instance.RecyclingObject();
         }
+    }
+
+    private void GoDiagonal(){
+        if(isUp) transform.position += Vector3.up * angle * Time.deltaTime;
+        else transform.position += Vector3.down * angle * Time.deltaTime;
+    }
+    private void Blur(){
+        Color color = spriteRenderer.color;
+        if(spriteRenderer.color.a >= 1f ) speedInvisible = -Math.Abs(speedInvisible);
+        else if(spriteRenderer.color.a <= 0f) speedInvisible = Math.Abs(speedInvisible);
+        color.a += speedInvisible * Time.deltaTime;
+        spriteRenderer.color = color;
     }
 
     public void OnCollisionEnter2D(Collision2D collision){
@@ -96,9 +117,24 @@ public class GroundController : MonoBehaviour
     }
     
     public void Classify(){
-        type = Random.Range(0,4);
-        if(GameConfig.TypeGround.normal.Equals(type)){
-
+        type = UnityEngine.Random.Range(0,5);
+        if((int)GameConfig.TypeGround.normal == type){
+            Debug.Log("normal");
+        }
+        else if((int)GameConfig.TypeGround.fast == type){
+            speed = 3f;
+            Debug.Log("fast");
+        }
+        else if((int)GameConfig.TypeGround.small == type){
+            transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            Debug.Log("small");
+        }
+        else if((int)GameConfig.TypeGround.diagonal == type){
+            angle = 1f;
+            Debug.Log("diagonal");
+        }
+        else if((int)GameConfig.TypeGround.invisible == type){
+            Debug.Log("invisible");
         }
     }
 }

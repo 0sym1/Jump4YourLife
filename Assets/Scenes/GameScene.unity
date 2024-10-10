@@ -1154,12 +1154,20 @@ PrefabInstance:
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 6056616624334894183, guid: 1cea32e70dd8ca24ea70cbe214c81da2, type: 3}
+      propertyPath: angle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056616624334894183, guid: 1cea32e70dd8ca24ea70cbe214c81da2, type: 3}
       propertyPath: speed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6056616624334894183, guid: 1cea32e70dd8ca24ea70cbe214c81da2, type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056616624334894183, guid: 1cea32e70dd8ca24ea70cbe214c81da2, type: 3}
+      propertyPath: speedInvisible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8042453375652435864, guid: 1cea32e70dd8ca24ea70cbe214c81da2, type: 3}
       propertyPath: m_IsActive

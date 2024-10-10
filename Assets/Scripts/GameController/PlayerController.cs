@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
-    // Start is called before the first frame update
     [SerializeField] private float speed;
     private GameObject skinPrefab;
     private GameObject skinObject;
@@ -54,7 +53,6 @@ public class PlayerController : MonoBehaviour
         isJump = true;
         transform.parent = null;
         rg.velocity = Vector3.up * speed;
-        Debug.Log(isJump + "hi");
         setAnimation();
     }
 
@@ -62,7 +60,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log(isJump);
             //update điểm
             GameManager.Instance.UpdateScore();
             // StartCoroutine(DelayJump());
