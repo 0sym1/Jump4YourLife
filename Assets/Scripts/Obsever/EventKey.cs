@@ -2,4 +2,6 @@
 {
     GAME_OVER,
     PERFECT,
+    CHANGE_SKIN,
+    CHANGE_THEME,
 }

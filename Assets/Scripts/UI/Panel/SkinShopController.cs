@@ -9,7 +9,6 @@ public class SkinShopController : Panel
     public static SkinShopController Instance;
     private List<SkinPlayer> skinPlayers = new List<SkinPlayer>();
     private List<SkinBackground> skinBackgrounds = new List<SkinBackground>();
-
     [SerializeField] private GameObject skinPlayerPanel;
     [SerializeField] private GameObject skinBackgroundPanel;
     [SerializeField] private Transform contentTransformAvt;
@@ -27,15 +26,17 @@ public class SkinShopController : Panel
         panelName = "SkinShopPanel";
         OpenSkinPlayer();
         GenerateButton();
+        LoadCurrentSkin();
     }
     public void OpenSkinPlayer(){
         skinPlayerPanel.SetActive(true);
         skinBackgroundPanel.SetActive(false);
-        LoadCurrentSkin();
     }
     public void OpenSkinBackground(){
         skinPlayerPanel.SetActive(false);
         skinBackgroundPanel.SetActive(true);
+        //Hien thi tick
+        Messenger.Broadcast(EventKey.CHANGE_THEME, PlayerPrefs.GetString(GameConfig.SkinBackgroundCurrent));
     }
 
     private void LoadData(){
@@ -60,6 +61,7 @@ public class SkinShopController : Panel
         SkinPlayer skinPlayer = Resources.Load<SkinPlayer>(GameConfig.SkinPlayerDataResourcePath + dataNameSkin);
         skinImg.sprite = skinPlayer.GetSkinImg;
         nameSkinTxt.text = skinPlayer.GetNameSkin;
+        Messenger.Broadcast(EventKey.CHANGE_SKIN, PlayerPrefs.GetString(GameConfig.SkinPlayerCurrent));
     }
 
     private void GenerateButton(){
