@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         // dat lai isJump cho player co the nhay tiep
-        PlayerController.Instance.setIsJump(false);
+        // PlayerController.Instance.setIsJump(false);
     }
 
     public IEnumerator PushWall(){

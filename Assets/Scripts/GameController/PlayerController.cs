@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private float boundScreen;
     private bool isDead;
-
     private void Awake()
     {
         Instance = this;
@@ -62,8 +61,7 @@ public class PlayerController : MonoBehaviour
         {
             //update điểm
             GameManager.Instance.UpdateScore();
-            // StartCoroutine(DelayJump());
-            isJump = false;
+            StartCoroutine(DelayJump());
         }
         setAnimation();
     }
@@ -92,5 +90,6 @@ public class PlayerController : MonoBehaviour
     // anti spam
     private IEnumerator DelayJump(){
         yield return new WaitForSeconds(0.1f);
+            isJump = false;
     }
 }

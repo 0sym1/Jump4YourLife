@@ -83,7 +83,7 @@ public class GroundController : MonoBehaviour
     }
 
     public void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Player"){
+        if(collision.gameObject.CompareTag("Player")){
             isCollide = true;
             PlayerController.Instance.transform.parent = transform;
             //day mat dat len
@@ -94,7 +94,7 @@ public class GroundController : MonoBehaviour
     }
 
     public void OnCollisionExit2D(Collision2D collision){
-        if(isCollide){
+        if(isCollide && collision.gameObject.CompareTag("Player")){
             collider2d.isTrigger = true;
         }
     }
@@ -118,6 +118,7 @@ public class GroundController : MonoBehaviour
     
     public void Classify(){
         type = UnityEngine.Random.Range(0,5);
+        if(GameManager.Instance.getScore() == 0) type = 0;
         if((int)GameConfig.TypeGround.normal == type){
             Debug.Log("normal");
         }
@@ -130,7 +131,7 @@ public class GroundController : MonoBehaviour
             Debug.Log("small");
         }
         else if((int)GameConfig.TypeGround.diagonal == type){
-            angle = 1f;
+            angle = 0.6f;
             Debug.Log("diagonal");
         }
         else if((int)GameConfig.TypeGround.invisible == type){
