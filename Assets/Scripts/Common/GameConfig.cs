@@ -26,6 +26,8 @@ public static class GameConfig
     //PlayerPrefs
     public const string SkinPlayerCurrent = "SkinPlayerCurrent";
     public const string SkinBackgroundCurrent = "SkinBackgroundCurrent";
+    public const string MucsicBackGround = "IsMusicPlaying";
+    public const string MucsicSFX = "IsSFXPlaying";
 
     public enum TypeGround{
         normal,

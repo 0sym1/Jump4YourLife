@@ -14,20 +14,32 @@ public class SettingController : Panel
 
     private void Start(){
         panelName = "SettingPanel";
-        soundBackgroundImg.sprite = onSoundSprite;
-        soundEffectImg.sprite = onSoundSprite;
+        if(PlayerPrefs.GetInt(GameConfig.MucsicBackGround) == 1) soundBackgroundImg.sprite = onSoundSprite;
+        else soundBackgroundImg.sprite = offSoundSprite;
+
+        if(PlayerPrefs.GetInt(GameConfig.MucsicSFX) == 1) soundEffectImg.sprite = onSoundSprite;
+        else soundEffectImg.sprite = offSoundSprite;
     }
     public void OpenCredit(){
         Application.OpenURL(link);
     }
     public void OnOffSoundBackground(){
-        ChangeImgSound(soundBackgroundImg);
+        ChangeSound(soundBackgroundImg, "BG");
     }
     public void OnOffSoundEffect(){
-        ChangeImgSound(soundEffectImg);
+        ChangeSound(soundEffectImg, "SFX");
     }
-    private void ChangeImgSound(Image image){
-        if(image.sprite == onSoundSprite) image.sprite = offSoundSprite;
-        else image.sprite = onSoundSprite;
+    private void ChangeSound(Image image, string typeSound){
+        if(image == null) Debug.Log("hehe");
+        if(image.sprite == onSoundSprite){
+            image.sprite = offSoundSprite;
+            if(typeSound == "BG") SoundManager.Instance.TurnOffMusic();
+            else if(typeSound == "SFX") SoundManager.Instance.TurnOffSFX();
+        }
+        else{
+            image.sprite = onSoundSprite;
+            if(typeSound == "BG") SoundManager.Instance.TurnOnMusic();
+            else if(typeSound == "SFX") SoundManager.Instance.TurnOnSFX();
+        }
     }
 }

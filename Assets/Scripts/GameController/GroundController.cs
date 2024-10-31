@@ -60,6 +60,8 @@ public class GroundController : MonoBehaviour
             isUp = !isUp;
             //update sprite
             UpdateSprite();
+            //Sound
+            if(isCollide) SoundManager.Instance.PlaySFX(SoundManager.Instance.breakSound);
         }
         // xoa cac obj bi out ra khoi man hinh va them obj o duoi
         if(transform.position.y > boundScreen){
@@ -67,6 +69,7 @@ public class GroundController : MonoBehaviour
             Reset();
             // them obj
             SpawnController.Instance.RecyclingObject();
+            Classify();
         }
     }
 
@@ -76,8 +79,10 @@ public class GroundController : MonoBehaviour
     }
     private void Blur(){
         Color color = spriteRenderer.color;
+
         if(spriteRenderer.color.a >= 1f ) speedInvisible = -Math.Abs(speedInvisible);
         else if(spriteRenderer.color.a <= 0f) speedInvisible = Math.Abs(speedInvisible);
+
         color.a += speedInvisible * Time.deltaTime;
         spriteRenderer.color = color;
     }
@@ -119,6 +124,7 @@ public class GroundController : MonoBehaviour
     public void Classify(){
         type = UnityEngine.Random.Range(0,5);
         if(GameManager.Instance.getScore() == 0) type = 0;
+        type = 4;
         if((int)GameConfig.TypeGround.normal == type){
             Debug.Log("normal");
         }

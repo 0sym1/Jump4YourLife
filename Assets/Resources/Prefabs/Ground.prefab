@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   lineScore: {fileID: 8042453375652435864}
-  angle: 0.6
+  angle: 0.4
   speedInvisible: 1
 --- !u!50 &156564338329209117
 Rigidbody2D:

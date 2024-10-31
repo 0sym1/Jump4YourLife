@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             //turn off instruct
             GameManager.Instance.setFalseInstructNoti();
+            //Sound
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.jump);
             Jump();
         }
         if(!isDead){
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         isJump = true;
+        rg.gravityScale = 2.5f;
         transform.parent = null;
         rg.velocity = Vector3.up * speed;
         setAnimation();
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             //update điểm
             GameManager.Instance.UpdateScore();
+            rg.gravityScale = 0;
             StartCoroutine(DelayJump());
         }
         setAnimation();
@@ -71,6 +75,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isJump = true;
+            rg.gravityScale = 2.5f;
         }
     }
     public void setAnimation()

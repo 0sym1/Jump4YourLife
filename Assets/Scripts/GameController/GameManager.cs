@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
     public void GameOver(){
         // hien len bang thong bao
         PanelManager.Instance.OpenPanel(GameConfig.GameOverPanel_Name);
+        //Sound
+        SoundManager.Instance.musicSource.mute = true;
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.gameOver);
         Time.timeScale = 0;
     }
 
